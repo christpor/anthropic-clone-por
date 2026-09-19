@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    background-color: #f7f4ee;
+    color: #191919;
+    font-family: 'Styrene', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  ::selection {
+    background-color: #dbe8d4;
+    color: #191919;
+  }
+}
+
+/* Anthropic Editorial Typography */
+.font-editorial {
+  font-family: Charter, 'Reckless', 'Tiempos', Georgia, Cambria, serif;
+}
+
+/* Rotating word animation */
+@keyframes wordFadeSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+}
+
+.animate-word-rotate {
+  animation: wordFadeSlide 3s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
