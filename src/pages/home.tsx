@@ -11,7 +11,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
     <div className="w-full bg-[#f7f4ee]">
       <HeroHome onNavigate={onNavigate} />
       <ReleaseBento onNavigate={onNavigate} />
-      <Manifesto />
+      <Manifesto onNavigate={onNavigate} />
     </div>
   );
 }

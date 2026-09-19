@@ -1,23 +1,35 @@
 import { FOOTER_COLUMNS } from '../data/anthropic-content';
 
-export function Footer() {
+interface FooterProps {
+  onNavigate?: (route: string) => void;
+}
+
+export function Footer({ onNavigate }: FooterProps) {
+  const handleLinkClick = (link: { label: string; route: string; external?: boolean }) => {
+    if (link.external) {
+      window.open(link.route, '_blank', 'noopener,noreferrer');
+    } else if (onNavigate) {
+      onNavigate(link.route);
+    }
+  };
+
   return (
     <footer className="w-full bg-[#111111] text-white pt-16 sm:pt-20 pb-12 px-6 sm:px-8 border-t border-white/10">
       <div className="max-w-[1400px] mx-auto space-y-16">
-        {/* 8-Column Navigation Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-8 sm:gap-10 text-xs sm:text-[13px]">
+        {/* Navigation Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-10 text-xs sm:text-[13px]">
           {FOOTER_COLUMNS.map((col, idx) => (
             <div key={idx} className="space-y-3.5">
               <h4 className="font-semibold text-white tracking-wide">{col.heading}</h4>
               <ul className="space-y-2.5 text-[#a3a3a3]">
                 {col.links.map((link, lIdx) => (
                   <li key={lIdx}>
-                    <a
-                      href="#"
-                      className="hover:text-white transition-colors duration-150 inline-block"
+                    <button
+                      onClick={() => handleLinkClick(link)}
+                      className="hover:text-white transition-colors duration-150 inline-block text-left"
                     >
-                      {link}
-                    </a>
+                      {link.label}
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -33,15 +45,24 @@ export function Footer() {
           </div>
 
           <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-white transition-colors">
+            <button
+              onClick={() => onNavigate && onNavigate('/policy')}
+              className="hover:text-white transition-colors"
+            >
               Privacy choices
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
+            </button>
+            <button
+              onClick={() => onNavigate && onNavigate('/policy')}
+              className="hover:text-white transition-colors"
+            >
               Terms of service
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
+            </button>
+            <button
+              onClick={() => onNavigate && onNavigate('/policy')}
+              className="hover:text-white transition-colors"
+            >
               Security
-            </a>
+            </button>
           </div>
         </div>
       </div>
